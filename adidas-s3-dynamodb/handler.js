@@ -29,7 +29,7 @@ export function hello(event, context, callback) {
             var params = {
                 TableName: 'adidas-mobilehub-1907738294-faces',
                 Item:{
-                    "faceId": data.FaceRecords.Face.FaceId,
+                    "faceId": data.FaceRecords[0].Face.FaceId,
                     "datetime": event.Records[0].eventTime,
                     "emotions": {
                         "happy": 100

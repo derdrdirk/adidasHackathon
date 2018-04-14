@@ -41,31 +41,31 @@ features:
           sdk-generation-stage-name: Development
         paths:
           /items: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/sampleLambda-20180414195639.zip
+            codeFilename: uploads/sampleLambda-20180414202454.zip
             description: 'Handler for calls to resource path : /items/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: sIhO8hT7wkgwQF4Wdq2C/jDtVBc3JiTSBQVJzs+a7i4=
+            hashcode: 2U0557Ena3lgY86fWkD7tt9h1PvUNtEdydqPtKiHk9k=
             memorySize: '128'
-            modified: '2018-04-14T17:57:16.230+0000'
+            modified: '2018-04-14T18:25:23.711+0000'
             name: sampleLambda
             runtime: nodejs6.10
             timeout: '3'
-            version: kWoIw8mQ9fus0uhLDUzOVio9g.kNGWMi
+            version: CE4LLh66MhQtj484ghRlO_rsvrrFGosc
           '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/sampleLambda-20180414195639.zip
+            codeFilename: uploads/sampleLambda-20180414202454.zip
             description: 'Handler for calls to resource path : /items/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: sIhO8hT7wkgwQF4Wdq2C/jDtVBc3JiTSBQVJzs+a7i4=
+            hashcode: 2U0557Ena3lgY86fWkD7tt9h1PvUNtEdydqPtKiHk9k=
             memorySize: '128'
-            modified: '2018-04-14T17:57:16.230+0000'
+            modified: '2018-04-14T18:25:23.711+0000'
             name: sampleLambda
             runtime: nodejs6.10
             timeout: '3'
-            version: EJPDaytZI0MgmqakqmvUcuiZ45kWvVq2
+            version: EmFQ0WLnZWv39I7f98MSIX7w2uO_nqWW
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -74,40 +74,7 @@ features:
       release: !com.amazonaws.mobilehub.v0.Bucket {}
   database: !com.amazonaws.mobilehub.v0.Database 
     components:
-      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
-        tables:
-          - !com.amazonaws.mobilehub.v0.NoSQLTable 
-            attributes:
-              email: S
-              personId: S
-              personName: S
-              phone: S
-              teamId: S
-            hashKeyName: teamId
-            hashKeyType: S
-            indexes:
-              - !com.amazonaws.mobilehub.v0.NoSQLIndex 
-                hashKeyName: teamId
-                hashKeyType: S
-                indexName: personName-index
-                rangeKeyName: personName
-                rangeKeyType: S
-            rangeKeyName: personId
-            rangeKeyType: S
-            tableName: ___DYNAMIC_PREFIX___-AWSMobileTable
-            tablePrivacy: public
-          - !com.amazonaws.mobilehub.v0.NoSQLTable 
-            attributes:
-              datetime: S
-              emotions: M
-              faceId: N
-              gender: S
-            hashKeyName: faceId
-            hashKeyType: N
-            rangeKeyName: datetime
-            rangeKeyType: S
-            tableName: ___DYNAMIC_PREFIX___-faces
-            tablePrivacy: public
+      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase {}
   mobile-analytics: !com.amazonaws.mobilehub.v0.Pinpoint 
     components:
       analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}
