@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import { Card } from "antd";
+import TimeSeries from "./TimeSeries";
+import CustomTable from "./CustomTable";
 import "./Client.css";
 
 const { Meta } = Card;
@@ -13,7 +15,7 @@ class Client extends Component {
   };
 
   componentDidMount() {
-    //fetch data
+    // fetch data
   }
 
   render() {
@@ -23,7 +25,7 @@ class Client extends Component {
       <React.Fragment>
         <div className="wrapper">
           <Row>
-            <Col span={6}>
+            <Col span={7}>
               <Card
                 hoverable
                 style={{ width: 240 }}
@@ -32,9 +34,12 @@ class Client extends Component {
                 <Meta title="ClientId:" description={clientId} />
               </Card>
             </Col>
-            <Col span={10} />
-            <Col span={6} />
+            <Col span={14}>
+              <TimeSeries />
+            </Col>
           </Row>
+          <br/>
+          <CustomTable />
         </div>
       </React.Fragment>
     );
