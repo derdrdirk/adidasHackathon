@@ -1,0 +1,21 @@
+{
+  "name": "adidas-s3-dynamodb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "serverless-plugin-existing-s3": "^2.1.0",
+    "serverless-webpack": "^5.1.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  },
+    "scripts": {
+        "deploy": "sls deploy -v && sls s3deploy"
+    },
+    "dependencies": {
+        "aws-sdk": "^2.224.1"
+    }
+}
