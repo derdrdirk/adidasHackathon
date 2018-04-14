@@ -1,69 +1,15 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 import { Link } from 'react-router-dom';
-
-const smileDict = {
-  happy: '😄',
-  sad: '😔',
-  angry: '😡',
-  confused: '😕',
-  disgusted: '🤢',
-  surprised: '😲',
-  smile: '😊',
-  calm: '😌'
-};
-
-const genderDict = {
-  male: '👱',
-  female: '👩'
-};
+import { emotionDict, genderDict } from './util.js';
 
 class CustomTable extends Component {
-
-  state = {
-    faces: [{
-      "face_id": "xxx",
-      "camera_id": "xxx",
-      "gender": "male",
-      "age": {
-        "min": 30,
-        "max": 40,
-      },
-      "emotions": {
-        "happy": 0.234,
-        "sad": null,
-        "angry": null,
-        "confused": null,
-        "disgusted": null,
-        "surprised": null,
-        "smile": 0.42432,
-        "calm": null,
-      },
-      "p1": 100,
-    }, {
-      "face_id": "xxx",
-      "camera_id": "xxx",
-      "gender": "male",
-      "age": {
-        "min": 30,
-        "max": 40,
-      },
-      "emotions": {
-        "happy": 0.234,
-        "sad": null,
-        "angry": null,
-        "confused": null,
-        "disgusted": null,
-        "surprised": null,
-        "smile": 0.42432,
-        "calm": null,
-      },
-      "p1": 100,
-    }],
-  }
+  constructor(props) {
+    super(props);
+  };
 
   render() {
-    const { faces } = this.state;
+    const { faces } = this.props;
 
     const columns = [{
       title: 'Id',
@@ -88,7 +34,7 @@ class CustomTable extends Component {
         const result = [];
         for( const key in emotions ) {
           if(emotions[key] !== null) {
-            result.push(<span>{smileDict[key]}</span>);
+            result.push(<span key={key}>{emotionDict[key]}</span>);
           }
         }
         return result;
