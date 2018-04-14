@@ -8,6 +8,7 @@ import { emotionDict, genderDict } from "./util.js";
 import "antd/dist/antd.css";
 import "react-vis/dist/style.css";
 const RadioGroup = Radio.Group;
+const { Meta } = Card;
 
 class Home extends Component {
   constructor(props) {
@@ -94,16 +95,27 @@ class Home extends Component {
     return (
       <div>
         <Row>
-          <Col span={11}>
-            <Row>
-              <Col span={12}>
-              </Col>
-              <Col span={12}>Image 2</Col>
-            </Row>
-            <Row>
-              <Col span={12}>Image 3</Col>
-              <Col span={12}>Image 4</Col>
-            </Row>
+          <Col span={10}>
+            <Carousel style={{backgroundColor: 'black'}}>
+              <Card
+                hoverable
+                cover={<img alt="example" src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png" style={{height: 300}} />}
+              >
+                <Meta
+                  title="Europe Street beat"
+                  description="www.instagram.com"
+                />
+              </Card>
+              <Card
+                hoverable
+                cover={<img alt="example" src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png" style={{height: 300}} />}
+              >
+                <Meta
+                  title="Europe Street beat"
+                  description="www.instagram.com"
+                />
+              </Card>
+            </Carousel>
           </Col>
           <Col span={11}>
             <CustomTable faces={faces} />
@@ -123,7 +135,7 @@ class Home extends Component {
         <Heatmap selectedEmotion={selectedEmotion} faces={faces} />
       </div>
     );
-  }
+              }
 }
 
 export default Home;
