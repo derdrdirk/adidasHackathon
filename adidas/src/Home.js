@@ -68,6 +68,16 @@ class Home extends Component {
       );
     }
 
+
+    const uniqueUserIds = [];
+    const uniqueFaces = [];
+    for (const face of faces) {
+      if(!uniqueUserIds.includes(face.user_id)) {
+        uniqueUserIds.push(face.user_id);
+        uniqueFaces.push(face);
+      }
+    }
+
     return (
       <div>
         <Row>
@@ -146,7 +156,7 @@ class Home extends Component {
           <br />
           <h1 id="table">Client Table</h1>
           <Col span={24}>
-            <CustomTable faces={faces} />
+            <CustomTable faces={uniqueFaces} />
           </Col>
         </Row>
         <Row>
