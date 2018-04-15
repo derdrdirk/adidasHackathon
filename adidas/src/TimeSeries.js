@@ -4,6 +4,23 @@ import { FlexibleXYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries } from 'r
 
 class TimeSeries extends Component {
   render() {
+    const { faces } = this.props;
+    console.log(faces);
+
+
+    const maleData = [];
+    const femaleData = [];
+
+    for (const face of faces) {
+      const timestamp = new Date(face.timestamp).getTime();
+      const happy = face.emotions.happy;
+      if(face.gender === 'male') {
+        maleData.push({x: timestamp, y: happy});
+      } else {
+        femaleData.push({x: timestamp, y: happy});
+      }
+    }
+
     return (
       <div>
         <Row>
@@ -12,17 +29,10 @@ class TimeSeries extends Component {
               height={250}>
               <HorizontalGridLines />
               <LineSeries
-                data={[
-                  {x: 1, y: 10},
-                  {x: 2, y: 5},
-                  {x: 3, y: 15}
-                ]}/>
+                data={maleData}/>
+              <XAxis />
               <LineSeries
-                data={[
-                  {x: 1, y: 5},
-                  {x: 2, y: 10},
-                  {x: 3, y: 15}
-                ]}/>
+                data={femaleData}/>
               <XAxis />
               <YAxis />
             </FlexibleXYPlot>
