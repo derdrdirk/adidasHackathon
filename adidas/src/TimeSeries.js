@@ -4,7 +4,7 @@ import { FlexibleXYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries } from 'r
 
 class TimeSeries extends Component {
   render() {
-    const { faces } = this.props;
+    const { faces, selectedEmotion } = this.props;
     console.log(faces);
 
 
@@ -13,11 +13,11 @@ class TimeSeries extends Component {
 
     for (const face of faces) {
       const timestamp = new Date(face.timestamp).getTime();
-      const happy = face.emotions.happy;
+      const emotion = face.emotions[selectedEmotion];
       if(face.gender === 'male') {
-        maleData.push({x: timestamp, y: happy});
+        maleData.push({x: timestamp, y: emotion});
       } else {
-        femaleData.push({x: timestamp, y: happy});
+        femaleData.push({x: timestamp, y: emotion});
       }
     }
 
