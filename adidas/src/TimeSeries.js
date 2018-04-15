@@ -5,8 +5,6 @@ import { FlexibleXYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries } from 'r
 class TimeSeries extends Component {
   render() {
     const { faces, selectedEmotion } = this.props;
-    console.log(faces);
-
 
     const maleData = [];
     const femaleData = [];
