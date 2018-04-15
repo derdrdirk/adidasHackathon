@@ -11,19 +11,28 @@ class CustomTable extends Component {
   render() {
     const { faces } = this.props;
     const tableFaces = faces.slice(Math.max(faces.length - 10, 1));
-
     const columns = [
       {
-        title: "Id",
+        title: "Image",
         dataIndex: "user_id",
         key: "user_id",
-        render: user_id => <Link to={`client/${user_id}`}>{user_id}</Link>
+        render: (user_id, { image_url }) => (
+          <Link to={`client/${user_id}`}>
+            <img
+              src={image_url}
+              alt={"user" + user_id}
+              style={{ height: "80px", width: "80px" }}
+            />
+          </Link>
+        )
       },
       {
         title: "Gender",
         dataIndex: "gender",
         key: "gender",
-        render: gender => genderDict[gender]
+        render: gender => (
+          <span style={{ fontSize: "30px" }}>{genderDict[gender]}</span>
+        )
       },
       {
         title: "Age",
@@ -39,7 +48,11 @@ class CustomTable extends Component {
           const result = [];
           for (const key in emotions) {
             if (emotions[key] !== null) {
-              result.push(<span key={key}>{emotionDict[key]}</span>);
+              result.push(
+                <span style={{ fontSize: "30px" }} key={key}>
+                  {emotionDict[key]}
+                </span>
+              );
             }
           }
           return result;

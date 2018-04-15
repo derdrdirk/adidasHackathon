@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Radio, Tabs } from "antd";
+import { Row, Col, Radio, Tabs, Icon } from "antd";
 import axios from "axios";
 import CustomTable from "./CustomTable.js";
 import TimeSeries from "./TimeSeries.js";
@@ -73,44 +73,69 @@ class Home extends Component {
           <br />
           <h1 id="cameras">Cameras</h1>
           <Col span={24} style={{ marginRight: "5%" }}>
-            <Tabs defaultActiveKey="1">
+            <Tabs defaultActiveKey="5">
               <TabPane
-                tab="Camera 1"
-                key="1"
-                style={{ "text-align": "center" }}
+                tab={
+                  <span>
+                    <Icon type="home" />
+                    {` Entrance`}
+                  </span>
+                }
+                key="5"
+                style={{ textAlign: "center" }}
               >
-                <img src={this.state.cameras.camera1} alt="Camera 1" />
+                <img src={this.state.cameras.entrance} alt="Entrance" />
               </TabPane>
               <TabPane
-                tab="Camera 2"
-                key="2"
-                style={{ "text-align": "center" }}
-              >
-                <img src={this.state.cameras.camera2} alt="Camera 2" />
-              </TabPane>
-              <TabPane
-                tab="Camera 3"
+                tab={
+                  <img
+                    src="https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw819169b7/zoom/CP9764_02_standard.jpg?sh=840&strip=false&sw=840"
+                    style={{ height: "55px" }}
+                  />
+                }
                 key="3"
-                style={{ "text-align": "center" }}
+                style={{ textAlign: "center" }}
               >
                 <img src={this.state.cameras.camera3} alt="Camera 3" />
               </TabPane>
               <TabPane
-                tab="Cash Register"
+                tab={
+                  <img
+                    src="https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwafe901e6/zoom/CV9889_01_laydown.jpg?sh=840&strip=false&sw=840"
+                    style={{ height: "55px" }}
+                  />
+                }
+                key="2"
+                style={{ textAlign: "center" }}
+              >
+                <img src={this.state.cameras.camera2} alt="Camera 2" />
+              </TabPane>
+              <TabPane
+                tab={
+                  <img
+                    src="https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwaf47e08a/zoom/BR6930_01_laydown.jpg?sh=840&strip=false&sw=840"
+                    style={{ height: "55px" }}
+                  />
+                }
+                key="1"
+                style={{ textAlign: "center" }}
+              >
+                <img src={this.state.cameras.camera1} alt="Camera 1" />
+              </TabPane>
+              <TabPane
+                tab={
+                  <span>
+                    <Icon type="bank" />
+                    {` Cash Register`}
+                  </span>
+                }
                 key="4"
-                style={{ "text-align": "center" }}
+                style={{ textAlign: "center", fontSize: "45px" }}
               >
                 <img
                   src={this.state.cameras.cashRegister}
                   alt="Cash Register"
                 />
-              </TabPane>
-              <TabPane
-                tab="Entrance"
-                key="5"
-                style={{ "text-align": "center" }}
-              >
-                <img src={this.state.cameras.entrance} alt="Entrance" />
               </TabPane>
             </Tabs>
           </Col>
@@ -137,6 +162,7 @@ class Home extends Component {
         </Row>
         <Row>
           <TimeSeries selectedEmotion={selectedEmotion} faces={faces} />
+          {/* <LineChart emotions={emotions} /> */}
         </Row>
         <Row>
           <br />
