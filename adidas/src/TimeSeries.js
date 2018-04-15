@@ -24,7 +24,7 @@ class TimeSeries extends Component {
         <Row>
           <Col span={24}>
             <FlexibleXYPlot
-              height={250}>
+              height={350}>
               <HorizontalGridLines />
               <LineSeries
                 data={maleData}/>
