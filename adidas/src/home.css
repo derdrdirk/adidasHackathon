@@ -1,3 +1,10 @@
+.ant-table-body {
+  font-size: 40px;
+}
+
+.ant-radio-wrapper {
+  font-size: 50px;
+}
 .ant-carousel .slick-slide {
   text-align: center;
   height: 160px;
