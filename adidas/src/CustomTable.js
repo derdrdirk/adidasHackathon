@@ -6,7 +6,6 @@ import { emotionDict, genderDict } from "./util.js";
 class CustomTable extends Component {
   render() {
     const { faces } = this.props;
-    const tableFaces = faces.slice(Math.max(faces.length - 10, 0));
     const columns = [
       {
         title: "Image",
@@ -65,7 +64,7 @@ class CustomTable extends Component {
         }
       }
     ];
-    return <Table columns={columns} dataSource={tableFaces} />;
+    return <Table columns={columns} dataSource={faces} />;
   }
 }
 
