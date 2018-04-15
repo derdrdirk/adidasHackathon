@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Radio } from "antd";
+import { Row, Col, Radio, Tabs } from "antd";
 import axios from "axios";
 import CustomTable from "./CustomTable.js";
 import TimeSeries from "./TimeSeries.js";
@@ -9,6 +9,7 @@ import "antd/dist/antd.css";
 import "react-vis/dist/style.css";
 import "./home.css";
 const RadioGroup = Radio.Group;
+const TabPane = Tabs.TabPane;
 
 class Home extends Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this.updateCameras();
+    this.updateFaces();
     this.clockTimer = setInterval(() => {
       this.updateCameras();
       this.updateFaces();
@@ -33,7 +36,9 @@ class Home extends Component {
   }
 
   async updateCameras() {
-    const { cameras } = await axios.get("/").then(r => r.data);
+    const cameras = await axios
+      .get("https://kiwi-adihack.herokuapp.com/get-camera-photos")
+      .then(r => r.data);
     this.setState({ cameras });
   }
 
@@ -65,54 +70,62 @@ class Home extends Component {
     return (
       <div>
         <Row>
-          <Col span={10} style={{ marginRight: "5%" }}>
-            <div style={{ height: "160px" }}>
-              <h4>Camera 1</h4>
-              <img
-                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                alt="Camera 1"
-              />
-            </div>
-            <br/>
-            <div style={{ height: "160px" }}>
-              <h4>Camera 2</h4>
-              <img
-                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                alt="Camera 2"
-              />
-            </div>
-            <br/>
-            <div style={{ height: "160px" }}>
-              <h4>Camera 3</h4>
-              <img
-                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                alt="Camera 3"
-              />
-            </div>
-            <br/>
-            <div style={{ height: "160px" }}>
-              <h4>Camera 4</h4>
-              <img
-                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                alt="Camera 4"
-              />
-            </div>
-            <br/>
-            <div style={{ height: "160px" }}>
-              <h4>Camera 5</h4>
-              <img
-                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                alt="Camera 5"
-              />
-            </div>
-            <br/>
-          </Col>
-          <Col span={11}>
-            <CustomTable faces={faces} />
+          <br />
+          <h1 id="cameras">Cameras</h1>
+          <Col span={24} style={{ marginRight: "5%" }}>
+            <Tabs defaultActiveKey="1">
+              <TabPane
+                tab="Camera 1"
+                key="1"
+                style={{ "text-align": "center" }}
+              >
+                <img src={this.state.cameras.camera1} alt="Camera 1" />
+              </TabPane>
+              <TabPane
+                tab="Camera 2"
+                key="2"
+                style={{ "text-align": "center" }}
+              >
+                <img src={this.state.cameras.camera2} alt="Camera 2" />
+              </TabPane>
+              <TabPane
+                tab="Camera 3"
+                key="3"
+                style={{ "text-align": "center" }}
+              >
+                <img src={this.state.cameras.camera3} alt="Camera 3" />
+              </TabPane>
+              <TabPane
+                tab="Cash Register"
+                key="4"
+                style={{ "text-align": "center" }}
+              >
+                <img
+                  src={this.state.cameras.cashRegister}
+                  alt="Cash Register"
+                />
+              </TabPane>
+              <TabPane
+                tab="Entrance"
+                key="5"
+                style={{ "text-align": "center" }}
+              >
+                <img src={this.state.cameras.entrance} alt="Entrance" />
+              </TabPane>
+            </Tabs>
           </Col>
         </Row>
         <br />
         <Row>
+          <br />
+          <h1 id="table">Client Table</h1>
+          <Col span={24}>
+            <CustomTable faces={faces} />
+          </Col>
+        </Row>
+        <Row>
+          <br />
+          <h1 id="emotion">Emotion Timeline</h1>
           <Col span={24} style={{ textAlign: "center" }}>
             <RadioGroup
               onChange={this.onChange}
@@ -122,8 +135,14 @@ class Home extends Component {
             </RadioGroup>
           </Col>
         </Row>
-        <TimeSeries selectedEmotion={selectedEmotion} faces={faces} />
-        <Heatmap selectedEmotion={selectedEmotion} faces={faces} />
+        <Row>
+          <TimeSeries selectedEmotion={selectedEmotion} faces={faces} />
+        </Row>
+        <Row>
+          <br />
+          <h1 id="heatmap">Heatmap</h1>
+          <Heatmap selectedEmotion={selectedEmotion} faces={faces} />
+        </Row>
       </div>
     );
   }
