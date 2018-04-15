@@ -31,9 +31,7 @@ export function hello(event, context, callback) {
                 Item:{
                     "faceId": data.FaceRecords[0].Face.FaceId,
                     "datetime": event.Records[0].eventTime,
-                    "emotions": {
-                        "happy": 100
-                    }
+                    "emotions": data.FaceRecords[0].FaceDetail 
                 }
             };
 
