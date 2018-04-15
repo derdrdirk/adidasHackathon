@@ -3,8 +3,8 @@ import { Row, Col, Radio, Tabs, Icon } from "antd";
 import axios from "axios";
 import CustomTable from "./CustomTable.js";
 import TimeSeries from "./TimeSeries.js";
-import Heatmap from "./Heatmap.js";
-import { emotionDict, genderDict } from "./util.js";
+import LineChart from "./LineChart";
+import { emotionDict } from "./util.js";
 import "antd/dist/antd.css";
 import "react-vis/dist/style.css";
 import "./home.css";
@@ -57,6 +57,7 @@ class Home extends Component {
 
   render() {
     const { selectedEmotion, faces } = this.state;
+    const { emotions } = faces;
 
     const radioButtons = [];
     for (const emotion in emotionDict) {
@@ -162,12 +163,9 @@ class Home extends Component {
         </Row>
         <Row>
           <TimeSeries selectedEmotion={selectedEmotion} faces={faces} />
-          {/* <LineChart emotions={emotions} /> */}
-        </Row>
-        <Row>
           <br />
-          <h1 id="heatmap">Heatmap</h1>
-          <Heatmap selectedEmotion={selectedEmotion} faces={faces} />
+          <br />
+          <br />
         </Row>
       </div>
     );

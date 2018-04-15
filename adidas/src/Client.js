@@ -25,15 +25,18 @@ class Client extends Component {
           clientId
       )
       .then(r => r.data);
-    //console.log(faces);
     const { gender, age, image_url: imageUrl } = faces && faces[0];
-    //const ageAvarage = age && Math.floor((age.min + age.max) / 2);
+    const ageAvarage = age && Math.floor((age.min + age.max) / 2);
     // const recomendations = await axios
-    //   .post("https://kiwi-adihack.herokuapp.com/recommend", {
-    //     age: ageAvarage,
-    //     gender
-    //   })
+    //   .post(
+    //     "https://kiwi-adihack.herokuapp.com/recommend",
+    //     {
+    //       age: ageAvarage,
+    //       gender
+    //     }
+    //   )
     //   .then(r => r.data);
+    // console.log(ageAvarage);
     this.setState({
       faces,
       imageUrl

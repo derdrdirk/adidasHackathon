@@ -4,20 +4,16 @@ import { Link } from "react-router-dom";
 import { emotionDict, genderDict } from "./util.js";
 
 class CustomTable extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { faces } = this.props;
-    const tableFaces = faces.slice(Math.max(faces.length - 10, 1));
+    const tableFaces = faces.slice(Math.max(faces.length - 10, 0));
     const columns = [
       {
         title: "Image",
         dataIndex: "user_id",
         key: "user_id",
         render: (user_id, { image_url }) => (
-          <Link to={`client/${user_id}`}>
+          <Link to={`/client/${user_id}`}>
             <img
               src={image_url}
               alt={"user" + user_id}
@@ -25,6 +21,12 @@ class CustomTable extends Component {
             />
           </Link>
         )
+      },
+      {
+        title: "Camera",
+        dataIndex: "camera_id",
+        key: "camera_id",
+        render: camera_id => <span>{camera_id}</span>
       },
       {
         title: "Gender",
@@ -46,26 +48,23 @@ class CustomTable extends Component {
         key: "emotions",
         render: emotions => {
           const result = [];
+          let counter = 0;
           for (const key in emotions) {
+            counter++;
+            const addLine = counter !== Object.keys(emotions).length - 1;
             if (emotions[key] !== null) {
               result.push(
                 <span style={{ fontSize: "30px" }} key={key}>
-                  {emotionDict[key]}
+                  {`${emotionDict[key]} ${Math.round(emotions[key] * 100) /
+                    100} ${addLine ? "| " : ""} `}
                 </span>
               );
             }
           }
           return result;
         }
-      },
-      {
-        title: "P1",
-        dataIndex: "p1",
-        key: "p1",
-        render: p1 => <span>{p1}%</span>
       }
     ];
-
     return <Table columns={columns} dataSource={tableFaces} />;
   }
 }

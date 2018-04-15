@@ -10,7 +10,6 @@ defaults.global.animation.duration = 5000;
 export default class RadarChart extends React.Component {
   render() {
     const { emotions } = this.props;
-    console.log(emotions);
     const data = {
       labels: Object.values(emotionDict),
       datasets: [
