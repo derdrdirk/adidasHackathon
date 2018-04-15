@@ -66,6 +66,23 @@ class Client extends Component {
       emotions.map(
         emotion => (emotion === null || emotion <= 10 ? 10 : emotion)
       );
+    let url = "";
+    switch (product) {
+      case "BR6930":
+        url =
+          "https://m.adidas.es/zapatilla-pharrell-williams-tennis-hu/BY8714.html?cgid=SEARCH";
+        break;
+      case "CV9889":
+        url = "https://m.adidas.es/camiseta-trefoil/CV9889.html?cgid=SEARCH";
+        break;
+      case "BY8745":
+        url =
+          "https://m.adidas.es/zapatilla-pharrell-williams-tennis-hu/BY8714.html?cgid=SEARCH";
+        break;
+      default:
+        url = "https://www.adidas.es/";
+        break;
+    }
     return (
       <React.Fragment>
         <Row>
@@ -76,7 +93,7 @@ class Client extends Component {
               cover={<img alt="profile" src={imageUrl} />}
             >
               <Meta title="ClientId:" description={clientId} />
-              <a href={`http://adidas.es/${product}.html`} target="_blank">
+              <a href={url} target="_blank">
                 <Meta title="Product:" description={product} />
               </a>
               <Meta title="Accuracy:" description={accuracy} />

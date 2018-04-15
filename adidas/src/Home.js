@@ -28,7 +28,7 @@ class Home extends Component {
     this.clockTimer = setInterval(() => {
       this.updateCameras();
       this.updateFaces();
-    }, 4000);
+    }, 3000);
   }
 
   componentWillUnmount() {
@@ -107,7 +107,7 @@ class Home extends Component {
                 key="3"
                 style={{ textAlign: "center" }}
               >
-                <img src={this.state.cameras.camera3} alt="Camera 3" />
+                <img src={this.state.cameras.camera1} alt="Camera 1" />
               </TabPane>
               <TabPane
                 tab={
@@ -131,7 +131,7 @@ class Home extends Component {
                 key="1"
                 style={{ textAlign: "center" }}
               >
-                <img src={this.state.cameras.camera1} alt="Camera 1" />
+                <img src={this.state.cameras.camera3} alt="Camera 3" />
               </TabPane>
               <TabPane
                 tab={
