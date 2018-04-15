@@ -27,11 +27,16 @@ class TimeSeries extends Component {
               height={350}>
               <HorizontalGridLines />
               <LineSeries
-                data={maleData}/>
+                data={maleData}
+                type="time-utc"
+              />
               <XAxis />
               <LineSeries
-                data={femaleData}/>
-              <XAxis />
+                data={femaleData}
+                type="time-utc"
+              />
+              <XAxis
+              />
               <YAxis />
             </FlexibleXYPlot>
           </Col>
