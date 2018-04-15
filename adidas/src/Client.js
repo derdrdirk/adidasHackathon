@@ -13,8 +13,7 @@ class Client extends Component {
   state = {
     imageUrl: "",
     faces: [],
-    recomendations: [],
-    selectedEmotion: "happy"
+    recomendations: {}
   };
 
   async componentDidMount() {
@@ -27,19 +26,15 @@ class Client extends Component {
       .then(r => r.data);
     const { gender, age, image_url: imageUrl } = faces && faces[0];
     const ageAvarage = age && Math.floor((age.min + age.max) / 2);
-    // const recomendations = await axios
-    //   .post(
-    //     "https://kiwi-adihack.herokuapp.com/recommend",
-    //     {
-    //       age: ageAvarage,
-    //       gender
-    //     }
-    //   )
-    //   .then(r => r.data);
-    // console.log(ageAvarage);
+    const recomendations = await axios
+      .get(
+        `https://kiwi-adihack.herokuapp.com/recommend?age=${ageAvarage}&gender=${gender}`
+      )
+      .then(r => r.data);
     this.setState({
       faces,
-      imageUrl
+      imageUrl,
+      recomendations
     });
   }
 
@@ -55,15 +50,15 @@ class Client extends Component {
     return radioButtons;
   };
 
-  onChange = e => {
-    this.setState({
-      selectedEmotion: e.target.value
-    });
-  };
-
   render() {
     const clientId = this.props.match.params.id;
-    const { imageUrl, faces = [], selectedEmotion } = this.state;
+    const {
+      imageUrl,
+      faces = [],
+      selectedEmotion,
+      recomendations
+    } = this.state;
+    const { accuracy, product } = recomendations;
     const face = faces[faces.length - 1];
     const emotions = face && face.emotions && Object.values(face.emotions);
     const parsedEmotions =
@@ -81,6 +76,10 @@ class Client extends Component {
               cover={<img alt="profile" src={imageUrl} />}
             >
               <Meta title="ClientId:" description={clientId} />
+              <a href={`http://adidas.es/${product}.html`} target="_blank">
+                <Meta title="Product:" description={product} />
+              </a>
+              <Meta title="Accuracy:" description={accuracy} />
             </Card>
           </Col>
           <Col span={8} style={{ float: "right", marginRight: "15%" }}>

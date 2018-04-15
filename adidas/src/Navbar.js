@@ -33,11 +33,6 @@ const Navbar = () => (
         <Icon type="line-chart" /> Emotion Timeline
       </a>
     </Menu.Item>
-    <Menu.Item>
-      <a href="#heatmap">
-        <Icon type="qrcode" /> Heatmap
-      </a>
-    </Menu.Item>
   </Menu>
 );
 

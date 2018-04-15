@@ -28,7 +28,7 @@ class Home extends Component {
     this.clockTimer = setInterval(() => {
       this.updateCameras();
       this.updateFaces();
-    }, 4000);
+    }, 3000);
   }
 
   componentWillUnmount() {
