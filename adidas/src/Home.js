@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Radio, Carousel } from "antd";
+import { Row, Col, Radio } from "antd";
 import axios from "axios";
 import CustomTable from "./CustomTable.js";
 import TimeSeries from "./TimeSeries.js";
@@ -25,7 +25,7 @@ class Home extends Component {
     this.clockTimer = setInterval(() => {
       this.updateCameras();
       this.updateFaces();
-    }, 2000);
+    }, 4000);
   }
 
   componentWillUnmount() {
@@ -66,36 +66,46 @@ class Home extends Component {
       <div>
         <Row>
           <Col span={10} style={{ marginRight: "5%" }}>
-            <Carousel style={{ backgroundColor: "black" }}>
-              <div>
-                <img
-                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                  alt="Camera 1"
-                />
-                Camera 1
-              </div>
-              <div>
-                <img
-                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                  alt="Camera 2"
-                />
-                Camera 2
-              </div>
-              <div>
-                <img
-                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                  alt="Camera 3"
-                />
-                Camera 3
-              </div>
-              <div>
-                <img
-                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
-                  alt="Camera 4"
-                />
-                Camera 4
-              </div>
-            </Carousel>
+            <div style={{ height: "160px" }}>
+              <h4>Camera 1</h4>
+              <img
+                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                alt="Camera 1"
+              />
+            </div>
+            <br/>
+            <div style={{ height: "160px" }}>
+              <h4>Camera 2</h4>
+              <img
+                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                alt="Camera 2"
+              />
+            </div>
+            <br/>
+            <div style={{ height: "160px" }}>
+              <h4>Camera 3</h4>
+              <img
+                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                alt="Camera 3"
+              />
+            </div>
+            <br/>
+            <div style={{ height: "160px" }}>
+              <h4>Camera 4</h4>
+              <img
+                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                alt="Camera 4"
+              />
+            </div>
+            <br/>
+            <div style={{ height: "160px" }}>
+              <h4>Camera 5</h4>
+              <img
+                src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                alt="Camera 5"
+              />
+            </div>
+            <br/>
           </Col>
           <Col span={11}>
             <CustomTable faces={faces} />

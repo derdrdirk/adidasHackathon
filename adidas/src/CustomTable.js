@@ -10,13 +10,14 @@ class CustomTable extends Component {
 
   render() {
     const { faces } = this.props;
+    const tableFaces = faces.slice(Math.max(faces.length - 10, 1));
 
     const columns = [
       {
         title: "Id",
-        dataIndex: "face_id",
-        key: "face_id",
-        render: (face_id, { user_id }) => <Link to={`client/${user_id}`}>{face_id}</Link>
+        dataIndex: "user_id",
+        key: "user_id",
+        render: user_id => <Link to={`client/${user_id}`}>{user_id}</Link>
       },
       {
         title: "Gender",
@@ -52,7 +53,7 @@ class CustomTable extends Component {
       }
     ];
 
-    return <Table columns={columns} dataSource={faces} />;
+    return <Table columns={columns} dataSource={tableFaces} />;
   }
 }
 
