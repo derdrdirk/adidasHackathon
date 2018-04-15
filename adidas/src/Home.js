@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Radio } from "antd";
+import { Row, Col, Radio, Carousel } from "antd";
 import axios from "axios";
 import CustomTable from "./CustomTable.js";
 import TimeSeries from "./TimeSeries.js";
@@ -7,8 +7,8 @@ import Heatmap from "./Heatmap.js";
 import { emotionDict, genderDict } from "./util.js";
 import "antd/dist/antd.css";
 import "react-vis/dist/style.css";
+import "./home.css";
 const RadioGroup = Radio.Group;
-const { Meta } = Card;
 
 class Home extends Component {
   constructor(props) {
@@ -16,62 +16,33 @@ class Home extends Component {
 
     this.state = {
       selectedEmotion: "happy",
-      faces: [
-        {
-          face_id: "xxx",
-          camera_id: "xxx",
-          gender: "male",
-          age: {
-            min: 30,
-            max: 40
-          },
-          emotions: {
-            happy: 0.234,
-            sad: null,
-            angry: null,
-            confused: null,
-            disgusted: null,
-            surprised: null,
-            smile: 0.42432,
-            calm: null
-          },
-          p1: 100
-        },
-        {
-          face_id: "xxx",
-          camera_id: "xxx",
-          gender: "male",
-          age: {
-            min: 30,
-            max: 40
-          },
-          emotions: {
-            happy: 0.234,
-            sad: null,
-            angry: null,
-            confused: null,
-            disgusted: null,
-            surprised: null,
-            smile: 0.42432,
-            calm: null
-          },
-          p1: 100
-        }
-      ]
+      cameras: {},
+      faces: []
     };
   }
 
   componentDidMount() {
-    //this.clockTimer = setInterval(() => this.updateCameras(), 10000);
+    this.updateCameras();
+    this.clockTimer = setInterval(() => {
+      this.updateCameras();
+      this.updateFaces();
+    }, 2000);
   }
 
   componentWillUnmount() {
     clearInterval(this.clockTimer);
   }
 
-  async updateCameras () {
-    const { data } = await axios.get("https://kiwi-adihack.herokuapp.com");
-    console.log(data);
+  async updateCameras() {
+    const { cameras } = await axios.get("/").then(r => r.data);
+    this.setState({ cameras });
+  }
+
+  async updateFaces() {
+    const faces = await axios
+      .get("https://kiwi-adihack.herokuapp.com/latest-records")
+      .then(r => r.data);
+    this.setState({ faces });
   }
 
   onChange = e => {
@@ -95,32 +66,43 @@ class Home extends Component {
     return (
       <div>
         <Row>
-          <Col span={10}>
-            <Carousel style={{backgroundColor: 'black'}}>
-              <Card
-                hoverable
-                cover={<img alt="example" src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png" style={{height: 300}} />}
-              >
-                <Meta
-                  title="Europe Street beat"
-                  description="www.instagram.com"
+          <Col span={10} style={{ marginRight: "5%" }}>
+            <Carousel style={{ backgroundColor: "black" }}>
+              <div>
+                <img
+                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                  alt="Camera 1"
                 />
-              </Card>
-              <Card
-                hoverable
-                cover={<img alt="example" src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png" style={{height: 300}} />}
-              >
-                <Meta
-                  title="Europe Street beat"
-                  description="www.instagram.com"
+                Camera 1
+              </div>
+              <div>
+                <img
+                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                  alt="Camera 2"
                 />
-              </Card>
+                Camera 2
+              </div>
+              <div>
+                <img
+                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                  alt="Camera 3"
+                />
+                Camera 3
+              </div>
+              <div>
+                <img
+                  src="http://www.adidas.es/static/on/demandware.static/-/Sites-adidas-ES-Library/default/dw439383d6/help/ico-company.png"
+                  alt="Camera 4"
+                />
+                Camera 4
+              </div>
             </Carousel>
           </Col>
           <Col span={11}>
             <CustomTable faces={faces} />
           </Col>
         </Row>
+        <br />
         <Row>
           <Col span={24} style={{ textAlign: "center" }}>
             <RadioGroup
@@ -135,7 +117,7 @@ class Home extends Component {
         <Heatmap selectedEmotion={selectedEmotion} faces={faces} />
       </div>
     );
-              }
+  }
 }
 
 export default Home;

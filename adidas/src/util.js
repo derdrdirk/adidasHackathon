@@ -10,6 +10,6 @@ export const emotionDict = {
 };
 
 export const genderDict = {
-    male: '👱',
-    female: '👩'
+    Male: '👱',
+    Female: '👩'
 };

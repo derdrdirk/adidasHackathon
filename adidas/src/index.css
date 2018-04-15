@@ -3,3 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.wrapper {
+  margin-top: 4%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
