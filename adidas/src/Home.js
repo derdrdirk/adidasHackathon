@@ -22,7 +22,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.updateCameras();
     this.clockTimer = setInterval(() => {
       this.updateCameras();
       this.updateFaces();
@@ -42,7 +41,7 @@ class Home extends Component {
     const faces = await axios
       .get("https://kiwi-adihack.herokuapp.com/latest-records")
       .then(r => r.data);
-    this.setState({ faces });
+    this.setState(prevState => ({ faces: [...prevState, ...faces] }));
   }
 
   onChange = e => {
